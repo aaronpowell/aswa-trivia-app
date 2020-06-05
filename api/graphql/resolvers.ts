@@ -82,6 +82,22 @@ const resolvers: IResolvers = {
 
       return player;
     },
+
+    startGame(_, { id }): Game {
+      const game = games.find((g) => g.id === id);
+
+      if (!game) {
+        throw new ValidationError("No game found!");
+      }
+
+      if (game.state !== GameState.WaitingForPlayers) {
+        throw new ValidationError("Game is already underway or complete");
+      }
+
+      game.state = GameState.Started;
+
+      return game;
+    },
   },
 };
 

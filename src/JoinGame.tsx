@@ -8,6 +8,14 @@ const ADD_PLAYER = gql`
     addPlayerToGame(id: $id, name: $name) {
       id
     }
+
+    startGame(id: $id) {
+      id
+      players {
+        id
+        name
+      }
+    }
   }
 `;
 
