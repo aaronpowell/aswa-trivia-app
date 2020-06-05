@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import CreateGame from "./CreateGame";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
+import JoinGame from "./JoinGame";
 
 const GRAPHQL_ENDPOINT = `${
   process.env.NODE_ENV === "production" ? "" : "http://localhost:7071"
@@ -19,6 +20,7 @@ function App() {
       <Router>
         <div className="App">
           <Route path="/" exact component={CreateGame} />
+          <Route path="/game/join/:id" component={JoinGame} />
         </div>
       </Router>
     </ApolloProvider>

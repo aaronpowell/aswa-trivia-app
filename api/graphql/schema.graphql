@@ -41,4 +41,5 @@ type Query {
 
 type Mutation {
   createGame: Game
+  addPlayerToGame(id: ID!, name: String!): Player!
 }

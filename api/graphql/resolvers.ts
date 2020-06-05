@@ -1,5 +1,5 @@
 import { IResolvers, ValidationError } from "apollo-server-azure-functions";
-import { Game, GameState } from "./types";
+import { Game, GameState, Player } from "./types";
 import axios from "axios";
 
 const games: Game[] = [];
@@ -57,6 +57,30 @@ const resolvers: IResolvers = {
       games.push(game);
 
       return game;
+    },
+
+    addPlayerToGame(_, { id, name }): Player {
+      const game = games.find((g) => g.id === id);
+
+      if (!game) {
+        throw new ValidationError("No game found!");
+      }
+
+      if (game.state !== GameState.WaitingForPlayers) {
+        throw new ValidationError("Game is already started, no cheating");
+      }
+
+      const playerId = idGenerator();
+
+      const player = {
+        id: playerId,
+        name,
+        answers: [],
+      };
+
+      game.players.push(player);
+
+      return player;
     },
   },
 };
