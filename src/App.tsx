@@ -5,6 +5,7 @@ import CreateGame from "./CreateGame";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
 import JoinGame from "./JoinGame";
+import PlayGame from "./PlayGame";
 
 const GRAPHQL_ENDPOINT = `${
   process.env.NODE_ENV === "production" ? "" : "http://localhost:7071"
@@ -21,6 +22,7 @@ function App() {
         <div className="App">
           <Route path="/" exact component={CreateGame} />
           <Route path="/game/join/:id" component={JoinGame} />
+          <Route path="/game/play/:id/:playerId" component={PlayGame} />
         </div>
       </Router>
     </ApolloProvider>

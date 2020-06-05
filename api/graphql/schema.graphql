@@ -43,4 +43,5 @@ type Mutation {
   createGame: Game
   addPlayerToGame(id: ID!, name: String!): Player!
   startGame(id: ID!): Game
+  submitAnswer(gameId: ID!, playerId: ID!, questionId: ID!, answer: String!): Player
 }

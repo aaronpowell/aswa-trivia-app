@@ -50,7 +50,7 @@ const resolvers: IResolvers = {
             id: q.question,
             question: q.question,
             correctAnswer: q.correct_answer,
-            answers: q.incorrect_answers.concat(q.correct_answer),
+            answers: q.incorrect_answers.concat(q.correct_answer).sort(),
           };
         }),
       };
@@ -97,6 +97,29 @@ const resolvers: IResolvers = {
       game.state = GameState.Started;
 
       return game;
+    },
+
+    submitAnswer(_, { gameId, playerId, questionId, answer }) {
+      const game = games.find((g) => g.id === gameId);
+
+      if (!game) {
+        throw new ValidationError("No game found!");
+      }
+
+      const player = game.players.find((p) => p.id === playerId);
+
+      if (!player) {
+        throw new ValidationError("No player");
+      }
+
+      const question = game.questions.find((q) => q.id === questionId);
+
+      player.answers.push({
+        answer,
+        question,
+      });
+
+      return player;
     },
   },
 };
