@@ -1,5 +1,5 @@
 import { IResolvers, ValidationError } from "apollo-server-azure-functions";
-import { Game, GameState, Player } from "./types";
+import { Game, GameState, Player, PlayerResult } from "./types";
 import axios from "axios";
 
 const games: Game[] = [];
@@ -32,6 +32,27 @@ const resolvers: IResolvers = {
     },
     games(): Game[] {
       return games;
+    },
+
+    playerResults(_, { gameId, playerId }): PlayerResult[] {
+      const game = games.find((g) => g.id === gameId);
+
+      if (!game) {
+        throw new ValidationError("No game found!");
+      }
+
+      const player = game.players.find((p) => p.id === playerId);
+
+      return player.answers.map((answer) => {
+        return {
+          submittedAnswer: answer.answer,
+          correctAnswer: answer.question.correctAnswer,
+          question: answer.question.question,
+          name: player.name,
+          answers: answer.question.answers,
+          correct: answer.question.correctAnswer === answer.answer,
+        };
+      });
     },
   },
 

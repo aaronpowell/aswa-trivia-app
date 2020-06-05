@@ -36,6 +36,7 @@ const SUBMIT_ANSWER = gql`
 
 const PlayGame: React.FC = () => {
   const { id, playerId } = useParams();
+  const history = useHistory();
   const [timeRemaining, setTimeRemaining] = useState(30);
   const [answer, setAnswer] = useState("");
   const { loading, data } = useQuery(GET_GAME, { variables: { id } });
@@ -52,7 +53,8 @@ const PlayGame: React.FC = () => {
         const q = data.game.questions.pop();
 
         if (!q) {
-          console.log("Game over!");
+          history.push(`/game/finish/${id}/${playerId}`);
+          return;
         } else {
           setTimeRemaining(30);
           setQuestion(q);
@@ -99,7 +101,12 @@ const PlayGame: React.FC = () => {
           return (
             <li key={a}>
               <label>
-                <input type="radio" value={a} onChange={() => setAnswer(a)} />
+                <input
+                  type="radio"
+                  value={a}
+                  onChange={() => setAnswer(a)}
+                  name="answer"
+                />
                 {a}
               </label>
             </li>

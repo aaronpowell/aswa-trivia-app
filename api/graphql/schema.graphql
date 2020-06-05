@@ -34,9 +34,19 @@ schema {
   mutation: Mutation
 }
 
+type PlayerResult {
+    name: String!
+    question: String!
+    submittedAnswer: String!
+    correctAnswer: String!
+    answers: [String!]!
+    correct: Boolean
+}
+
 type Query {
   game(id: ID!): Game
   games: [Game!]!
+  playerResults(gameId: ID!, playerId: ID!): [PlayerResult!]!
 }
 
 type Mutation {

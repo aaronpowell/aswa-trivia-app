@@ -8,7 +8,7 @@ export type Question = {
   id: string;
   question: string;
   correctAnswer: string;
-  answer: string[];
+  answers: string[];
 };
 
 export type Answer = {
@@ -27,4 +27,13 @@ export type Game = {
   state: GameState;
   players: Player[];
   questions: Question[];
+};
+
+export type PlayerResult = {
+  name: string;
+  question: string;
+  submittedAnswer: string;
+  correctAnswer: string;
+  answers: string[];
+  correct: boolean;
 };
