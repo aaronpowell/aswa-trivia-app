@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import CreateGame from "./CreateGame";
+import CreateGame from "./pages/CreateGame";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
-import JoinGame from "./JoinGame";
-import PlayGame from "./PlayGame";
-import CompleteGame from "./CompleteGame";
+import JoinGame from "./pages/JoinGame";
+import PlayGame from "./pages/PlayGame";
+import CompleteGame from "./pages/CompleteGame";
 
 const GRAPHQL_ENDPOINT = `${
   process.env.NODE_ENV === "production" ? "" : "http://localhost:7071"

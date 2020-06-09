@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import gql from "graphql-tag";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import useInterval from "./useInterval";
+import useInterval from "../useInterval";
 
 const GET_GAME = gql`
   query getGame($id: ID!) {

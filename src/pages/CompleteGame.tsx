@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
-import { PlayerResult } from "../api/graphql/types";
+import { PlayerResult } from "../../api/graphql/types";
 
 const PLAYER_RESULTS = gql`
   query playerResults($gameId: ID!, $playerId: ID!) {
