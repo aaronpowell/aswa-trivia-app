@@ -1,5 +1,5 @@
 import { IResolvers, ValidationError } from "apollo-server-azure-functions";
-import { Game, GameState, Player, PlayerResult } from "./types";
+import { Game, GameState, Player, PlayerResult, QueryResolvers, MutationResolvers } from "./generated/graphql";
 import axios from "axios";
 
 const games: Game[] = [];
@@ -19,9 +19,14 @@ const idGenerator = () => {
   return code;
 };
 
-const resolvers: IResolvers = {
+interface Resolvers extends IResolvers {
+  Query: QueryResolvers
+  Mutation: MutationResolvers
+}
+
+const resolvers: Resolvers = {
   Query: {
-    game(_, { id }): Game {
+    game(_, { id }) {
       const game = games.find((g) => g.id === id);
 
       if (!game) {
@@ -30,11 +35,11 @@ const resolvers: IResolvers = {
 
       return game;
     },
-    games(): Game[] {
+    games() {
       return games;
     },
 
-    playerResults(_, { gameId, playerId }): PlayerResult[] {
+    playerResults(_, { gameId, playerId }) {
       const game = games.find((g) => g.id === gameId);
 
       if (!game) {
@@ -57,7 +62,7 @@ const resolvers: IResolvers = {
   },
 
   Mutation: {
-    async createGame(): Promise<Game> {
+    async createGame() {
       const questions = await axios.get(TRIVIA_API);
 
       const id = idGenerator();
@@ -80,7 +85,7 @@ const resolvers: IResolvers = {
       return game;
     },
 
-    addPlayerToGame(_, { id, name }): Player {
+    addPlayerToGame(_, { id, name }) {
       const game = games.find((g) => g.id === id);
 
       if (!game) {
@@ -104,7 +109,7 @@ const resolvers: IResolvers = {
       return player;
     },
 
-    startGame(_, { id }): Game {
+    startGame(_, { id }) {
       const game = games.find((g) => g.id === id);
 
       if (!game) {

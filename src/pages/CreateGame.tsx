@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from "react";
-import gql from "graphql-tag";
-import { useMutation } from "@apollo/react-hooks";
 import { useHistory } from "react-router-dom";
-
-const CREATE_GAME = gql`
-  mutation {
-    createGame {
-      id
-    }
-  }
-`;
+import { useCreateGameMutation } from "../graphql-operations";
 
 const CreateGame: React.FC = () => {
   const [creating, setCreating] = useState(false);
-  const [createGame, { loading, called, data, error }] = useMutation(
-    CREATE_GAME
-  );
+  const [
+    createGame,
+    { loading, called, data, error },
+  ] = useCreateGameMutation();
+
   const history = useHistory();
 
   useEffect(() => {
@@ -25,7 +18,7 @@ const CreateGame: React.FC = () => {
   }, [creating, createGame]);
 
   useEffect(() => {
-    if (!loading && called && !error) {
+    if (!loading && called && !error && data && data.createGame) {
       console.log(data);
       history.push(`/game/join/${data.createGame.id}`);
     } else if (error) {

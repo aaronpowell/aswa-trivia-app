@@ -1,5 +1,5 @@
 enum GameState {
-  WaitingForPlayer
+  WaitingForPlayers
   Started
   Completed
 }
@@ -35,12 +35,12 @@ schema {
 }
 
 type PlayerResult {
-    name: String!
-    question: String!
-    submittedAnswer: String!
-    correctAnswer: String!
-    answers: [String!]!
-    correct: Boolean
+  name: String!
+  question: String!
+  submittedAnswer: String!
+  correctAnswer: String!
+  answers: [String!]!
+  correct: Boolean
 }
 
 type Query {
@@ -53,5 +53,10 @@ type Mutation {
   createGame: Game
   addPlayerToGame(id: ID!, name: String!): Player!
   startGame(id: ID!): Game
-  submitAnswer(gameId: ID!, playerId: ID!, questionId: ID!, answer: String!): Player
+  submitAnswer(
+    gameId: ID!
+    playerId: ID!
+    questionId: ID!
+    answer: String!
+  ): Player
 }
