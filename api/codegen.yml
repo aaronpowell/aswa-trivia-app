@@ -16,3 +16,6 @@ generates:
       - typescript
       - typescript-operations
       - typescript-react-apollo
+hooks:
+  afterOneFileWrite:
+    - npx prettier --write
