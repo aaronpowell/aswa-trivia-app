@@ -1,6 +1,6 @@
 # Trivia App Demo
 
-This repo contains a demo application for [Azure Static Web Apps (Preview)](https://docs.microsoft.com/azure/static-web-apps/?WT.mc_id=staticwebapps-github-aapowell) which consists of a Trivia Game, backed by [Open Trivia DB](https://opentdb.com/).
+This repo contains a demo application for [Azure Static Web Apps (Preview)](https://docs.microsoft.com/azure/static-web-apps/?WT.mc_id=javascript-0000-aapowell) which consists of a Trivia Game, backed by [Open Trivia DB](https://opentdb.com/).
 
 You can find a deployed version of the application at https://trivia-app.aaron-powell.com/.
 
@@ -22,7 +22,7 @@ To communicate with the backend, [Apollo Client for React](https://www.apollogra
 
 ### Serverless Backend
 
-The backend is written using [Azure Functions](https://docs.microsoft.com/azure/functions/?WT.mc_id=staticwebapps-github-aapowell), using the TypeScript template, and exposes the data via [GraphQL](https://graphql.org/) using [Apollo Server for Azure Functions](https://www.apollographql.com/docs/apollo-server/deployment/azure-functions/). Presently, there's no database backend, the data is stored temporarily in memory.
+The backend is written using [Azure Functions](https://docs.microsoft.com/azure/functions/?WT.mc_id=javascript-0000-aapowell), using the TypeScript template, and exposes the data via [GraphQL](https://graphql.org/) using [Apollo Server for Azure Functions](https://www.apollographql.com/docs/apollo-server/deployment/azure-functions/). Presently, there's no database backend, the data is stored temporarily in memory.
 
 ## Learn how to build it
 
@@ -35,5 +35,5 @@ I did a live stream where we built the whole thing from scratch, you can watch i
 If you want to look at wats to expand the application, there's a few opportunities:
 
 - Improve the UI
-- Add a proper database backend, such as [Cosmos DB's free tier](https://docs.microsoft.com/azure/cosmos-db/optimize-dev-test?WT.mc_id=staticwebapps-github-aapowell#azure-cosmos-db-free-tier)
+- Add a proper database backend, such as [Cosmos DB's free tier](https://docs.microsoft.com/azure/cosmos-db/optimize-dev-test?WT.mc_id=javascript-0000-aapowell#azure-cosmos-db-free-tier)
 - Make the game multi-player. The data structures are designed for multi-player, but the application doesn't support it presently
