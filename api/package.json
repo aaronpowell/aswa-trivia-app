@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "apollo-server-azure-functions": "^2.14.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "graphql-import": "^1.0.2"
   }
 }
